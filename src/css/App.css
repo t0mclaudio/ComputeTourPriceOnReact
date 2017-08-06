@@ -1,0 +1,141 @@
+@font-face {
+  font-family: 'Gotham Rounded Bold';
+  src:  url('./fonts/gotham-rounded-bold.otf');
+}
+
+@font-face {
+  font-family: 'Gotham Rounded Book';
+  src:  url('./fonts/gotham-rounded-book.otf');
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Gotham Rounded Book', sans-serif;
+  color: #95a5a6;
+}
+
+h1 {
+  font-family: 'Gotham Rounded Bold', sans-serif;
+  color: #2ecc71;
+  font-size: 24px;  
+}
+label {
+  font-family: 'Gotham Rounded Bold', sans-serif;
+  color: #2c3e50;
+  font-size: 18px;
+  margin: 0 15px;
+}
+
+input {
+  border-radius: 3px;
+  border-color: rgba(149, 165, 166,1.0);
+  font: 16px 'Gotham Rounded Bold' ;
+  background-color: rgba(241, 196, 15,.10);
+  border: 1px solid rgba(149, 165, 166,1.0);
+  padding:5px;
+  color: rgba(39, 174, 96,1.0);
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px dotted #bdc3c7;
+}
+
+thead td {
+  border: 1px dotted #bdc3c7; 
+  font-family: 'Gotham Rounded Bold', sans-serif;
+  color: rgba(46, 204, 113,1.0);
+  font-size: 18px;
+}
+
+td, th {
+  padding: 10px;
+}
+
+.table-title {
+  text-align: center;
+  font-size: 24px;
+}
+.numPax {
+  width:40px;
+  text-align: center;
+  font-size: 18px;
+}
+.tfoot {
+  border-top: 2px solid #2c3e50;
+}
+
+.footer-control input {
+  margin:0 5px;
+}
+.footer-control button {
+  padding:0 10px;
+  border-radius: 4px;
+  border: 1px solid;
+  margin: 1px;
+  color:rgba(52, 73, 94,1.0);
+  background-color: rgba(236, 240, 241,1.0);
+  font-size: 18px;
+}
+
+.total {
+  font-family: "Gotham Rounded Bold";
+  color:rgba(44, 62, 80,1.0);
+}
+
+.alignright {
+  text-align: right;
+}
+
+.center-align {
+  text-align: center;
+}
+
+.container2 a {
+  font-family: "Gotham Rounded Bold", serif;
+  font-size: 22px;
+  text-decoration: none;
+  color: #e74c3c;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+#itinerary {
+  font-family: "Gotham Rounded Book";
+  font-size: 18px;
+  color: rgba(46, 204, 113,1.0);
+  width: 100%;
+  height: 1000px;
+}
