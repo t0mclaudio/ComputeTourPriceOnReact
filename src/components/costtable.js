@@ -1,51 +1,43 @@
 import React from 'react';
 import AddItem from './additem.js';
 import CostItem from './costitem.js';
-import CostTotal from './costtotal.js';
 
-var CostTable = React.createClass({
-  getInitialState() {
-    return (
-      {
-        items: this.props.items
-      }
-    )
-  },
-  onAddItem(item) {
-    this.state.items.push(item)
-    this.setState(this.state);
-  },
-  render(){
-    return(
-      <table>
-        <thead className="thead">
-          <tr>
-            <td colSpan={2} className="table-title">
-              <i className={`fa ${ this.props.icon }`} aria-hidden="true"></i> 
-              {this.props.title}
-            </td>
-          </tr>
-          <tr>
-            <td>Item</td><td className="center-align">Price</td>
-          </tr>          
-        </thead>
-        <tbody className="tbody">
-          {this.state.items.map(function(item){
-            return (
-              <CostItem 
-                item={item.item} 
-                price={item.price} />
-            )
-          })}
-          
-        </tbody>
-        <tfoot className="tfoot">
-          <CostTotal items={this.state.items} />
-          <AddItem onAdd={this.onAddItem} />
-        </tfoot>
-      </table>
-    )
-  }
-})
+var CostTable = (props) => {
+  // Function to make obj to CostTable Surface
+  const onAdd = obj => props.onAddItem(obj) //No paranthesis and curly because of single parameter
+  
+  return(
+    <table>
+      <thead className="thead">
+        <tr>
+          <td colSpan={2} className="table-title">
+            <i className={`fa ${ props.icon }`} aria-hidden="true"></i> 
+            {props.title}
+          </td>
+        </tr>
+        <tr>
+          <td>Item</td><td className="center-align">Price</td>
+        </tr>          
+      </thead>
+      <tbody className="tbody">
+        {props.items.map(function(item){
+          return (
+            <CostItem 
+              item={item.item} 
+              price={item.price} />
+          )
+        })}
+        
+      </tbody>
+      <tfoot className="tfoot">
+        <tr>
+          <td className="total">Total: </td>
+          <td className="total alignright">{props.total}</td>
+        </tr>   
+        <AddItem onAddItem={(obj)=>onAdd(obj)} />
+      </tfoot>
+    </table>
+  )
+}
 
 export default CostTable;
