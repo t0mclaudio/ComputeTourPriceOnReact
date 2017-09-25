@@ -17,12 +17,20 @@ class App extends React.Component {
     super(props);
     this.state = data
   }
-  appendItem(item) {
-    var individual = this.state.individual
-    individual.push(item)
-    this.setState(
-      this.state.individual = individual
-    )
+  appendItem(type, item) {
+    if (type==="i") {
+      let individual = this.state.individual
+      individual.push(item)
+      let total = individual.reduce((total, item)=>({price: total.price+item.price}))    
+      this.setState({individual: individual})
+      this.setState({i_total:total.price})
+    } else if (type==="s") {
+      let shared = this.state.shared
+      shared.push(item)
+      let total = shared.reduce((total, item)=>({price: total.price+item.price}))    
+      this.setState({shared: shared})
+      this.setState({s_total:total.price})   
+    }  
   }
   render() {
     return (
@@ -36,7 +44,7 @@ class App extends React.Component {
           </div>
           <Route exact path="/computations" 
             component={()=> (<Computations data={this.state} 
-            addNewItem={(item) => this.appendItem(item)}/>)} />
+            addNewItem={(type,item) => this.appendItem(type,item)}/>)} />
             
           <Route exact path="/itinerary" component={Itinerary}/>
         </div>
