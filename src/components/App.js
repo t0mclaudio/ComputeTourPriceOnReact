@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 import '../css/App.css';
 import '../css/Flexbox.css';
-import logo from '../logo.svg';
 import Info from './info.js';
 import Itinerary from './itinerary.js';
 import Computations from './computations.js';
@@ -30,7 +29,10 @@ class App extends React.Component {
       let total = shared.reduce((total, item)=>({price: total.price+item.price}))    
       this.setState({shared: shared})
       this.setState({s_total:total.price})   
-    }  
+    }
+    this.setState((prevState, props)=>({
+      total: prevState.i_total + (prevState.s_total/prevState.adults)
+    })) 
   }
   render() {
     return (
