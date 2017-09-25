@@ -1,6 +1,6 @@
 import React from 'react';
 
-var CostItem = function(props){
+var CostItem = (props) => {
   return (
     <tr>
       <td>{props.item}</td>
