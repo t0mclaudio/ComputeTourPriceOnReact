@@ -1,5 +1,6 @@
 import React from 'react';
 import CostTable from './costtable.js';
+import Total from './total.js';
 
 var Computations = (props) => {
         const onAdd = (type,obj) => props.addNewItem(type,obj)    
@@ -17,7 +18,8 @@ var Computations = (props) => {
                     total={props.data.s_total} 
                     icon="fa-users" 
                     items={props.data.shared}
-                    onAddItem = {(obj)=>onAdd("s", obj)}/>  
+                    onAddItem = {(obj)=>onAdd("s", obj)}/>
+                <Total total={props.data.total} />      
           </div>
         )
     }
