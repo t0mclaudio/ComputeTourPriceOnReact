@@ -1,39 +1,31 @@
 import React from 'react';
 
-var AddItem = React.createClass({
-  propTypes:{
-      item: React.PropTypes.string.isRequired,
-      price: React.PropTypes.number.isRequired
-  },
-  getInitialState(){
-    return {
-      item: "",
-      price: 0
-    }
-  },
+class AddItem extends React.Component {
+  constructor(props){
+    super(props);
+    this.onItemChange = this.onItemChange.bind(this);
+    this.onPriceChange = this.onPriceChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.state = {item: "", price:0};
+  }
   onItemChange(e){
-    console.log(e.target.value)
     this.setState({
       item: e.target.value,
     })
-  },
+  }
   onPriceChange(e){
-    console.log(e.target.value)
     this.setState({
       price: Number(e.target.value)
     })
-  },  
+  }
   onSubmit(e){
     e.preventDefault()
-    this.props.onAdd({
-      item: this.state.item,
-      price: this.state.price
-    })
+    this.props.onAddItem(this.state)
     this.setState({
       item: "",
-      price: ""
+      price: 0
     })
-  },
+  }
   render(){
     return (
       <tr>
@@ -49,6 +41,6 @@ var AddItem = React.createClass({
       </tr>    
     )
   }
-})
+}
 
 export default AddItem;
