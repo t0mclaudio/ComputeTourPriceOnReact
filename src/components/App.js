@@ -52,6 +52,10 @@ class App extends React.Component {
       [event.target.name]: event.target.value
     })
   }
+  changeFactor(event){
+    this.updateInfoState(event);
+    this.computeTotals();
+  }
   render() {
     return (
       <BrowserRouter>
@@ -64,7 +68,9 @@ class App extends React.Component {
           </div>
           <Route exact path="/computations" 
             component={()=> (<Computations data={this.state} 
-            addNewItem={(type,obj) => this.appendItem(type,obj)}/>)} />
+            addNewItem={(type,obj) => this.appendItem(type,obj)}
+            factorChange={(event) => this.changeFactor(event)}/>)}
+             />
             
           <Route exact path="/itinerary" component={Itinerary}/>
         </div>
