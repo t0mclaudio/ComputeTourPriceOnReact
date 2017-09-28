@@ -44,7 +44,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <Info onChange={(event) => this.updateInfoState(event)} />
+          <Info data={this.state} onChange={(event) => this.updateInfoState(event)} />
           <div className="container2">
             <Link to="/computations"><i className="fa fa-calculator" aria-hidden="true"></i> Computations</Link>
             <Link to="/itinerary"><i className="fa fa-list" aria-hidden="true"></i> Itinerary</Link>
