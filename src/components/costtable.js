@@ -20,11 +20,12 @@ var CostTable = (props) => {
         </tr>          
       </thead>
       <tbody className="tbody">
-        {props.items.map(function(item){
+        {props.items.map(function(item, index){
           return (
             <CostItem 
               item={item.item} 
-              price={item.price} />
+              price={item.price} 
+              key={index}/>
           )
         })}
         
