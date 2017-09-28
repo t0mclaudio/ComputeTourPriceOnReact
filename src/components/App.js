@@ -16,7 +16,8 @@ class App extends React.Component {
     super(props);
     this.state = data
   }
-  appendItem(type, item) {
+  appendItem(type, obj) {
+    let item = {item: obj.target.item.value, price: Number(obj.target.price.value) }
     if (type==="i") {
       let individual = this.state.individual
       individual.push(item)
@@ -34,11 +35,16 @@ class App extends React.Component {
       total: prevState.i_total + (prevState.s_total/prevState.adults)
     })) 
   }
+  updateInfoState(event){
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
   render() {
     return (
       <BrowserRouter>
         <div>
-          <Info />
+          <Info onChange={(event) => this.updateInfoState(event)} />
           <div className="container2">
             <Link to="/computations"><i className="fa fa-calculator" aria-hidden="true"></i> Computations</Link>
             <Link to="/itinerary"><i className="fa fa-list" aria-hidden="true"></i> Itinerary</Link>
@@ -46,7 +52,7 @@ class App extends React.Component {
           </div>
           <Route exact path="/computations" 
             component={()=> (<Computations data={this.state} 
-            addNewItem={(type,item) => this.appendItem(type,item)}/>)} />
+            addNewItem={(type,obj) => this.appendItem(type,obj)}/>)} />
             
           <Route exact path="/itinerary" component={Itinerary}/>
         </div>
