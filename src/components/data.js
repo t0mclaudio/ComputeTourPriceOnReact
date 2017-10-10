@@ -33,11 +33,8 @@ var data = {
 			"price": 1800
 		}
 	],
-	"i_total": 0,
-	"s_total": 0,
-	"margin": 0,
-	"tax": 0,
-	"total": 0
+	"margin": 30,
+	"tax": 12,
 }
 
 export default data;
