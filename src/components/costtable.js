@@ -1,6 +1,7 @@
 import React from 'react';
 import AddItem from './additem.js';
 import CostItem from './costitem.js';
+import Currency from 'currency-formatter';
 
 var CostTable = (props) => {
   // Function to make obj to CostTable Surface
@@ -33,7 +34,7 @@ var CostTable = (props) => {
       <tfoot className="tfoot">
         <tr>
           <td className="total">Total: </td>
-          <td className="total alignright">{props.total}</td>
+          <td className="total alignright">{Currency.format(props.total, {code:'PHP'})}</td>
         </tr>   
         <AddItem onAddItem={(obj)=>onAdd(obj)} />
       </tfoot>
