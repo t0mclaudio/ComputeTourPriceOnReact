@@ -23,6 +23,7 @@ var Computations = (props) => {
                     total={props.stotal} 
                     icon="fa-users" 
                     items={props.data.shared}
+                    sharing={props.sharing}
                     onAddItem = {(obj)=>onAdd("s", obj)} />
                 <div>        
                     <Total text="Total Cost" total={props.cost} />
