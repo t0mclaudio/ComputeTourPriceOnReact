@@ -11,18 +11,18 @@ var Computations = (props) => {
                 <Factor onChange={(event)=>onFactorChange(event)} data={props.data} />  
                 <CostTable 
                     title="Individual" 
-                    total={props.data.i_total} 
+                    total={props.itotal} 
                     icon="fa-user"
                     items={props.data.individual}
                     onAddItem = {(obj)=>onAdd("i", obj)}/> 
 
                 <CostTable 
                     title="Shared" 
-                    total={props.data.s_total} 
+                    total={props.stotal} 
                     icon="fa-users" 
                     items={props.data.shared}
                     onAddItem = {(obj)=>onAdd("s", obj)}/>
-                <Total total={props.data.total} />      
+                <Total total={props.total} />      
           </div>
         )
     }
