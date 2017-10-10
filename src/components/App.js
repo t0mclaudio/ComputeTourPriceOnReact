@@ -26,11 +26,12 @@ class App extends React.Component {
     let individual = this.state.individual
     let shared = this.state.shared
     this.itotal = (individual.reduce((total, item)=>({price: total.price+item.price}))).price
-    this.stotal = (shared.reduce((total, item)=>({price: total.price+item.price}))).price  
-    let cost = this.itotal + (this.stotal/this.adults)
-    let costPlusMargin = cost + (cost*(this.margin/100))
-    let plusTax = costPlusMargin + (costPlusMargin*(this.tax/100))
-    this.total = plusTax
+    this.stotal = (shared.reduce((total, item)=>({price: total.price+item.price}))).price
+    this.sharing = this.stotal/this.adults 
+    this.cost = this.itotal + this.sharing
+    this.costPlusMargin = this.cost + (this.cost*(this.margin/100))
+    this.plusTax = this.costPlusMargin + (this.costPlusMargin*(this.tax/100))
+    this.total = this.plusTax * this.adults
   }
   appendItem(type, obj) {
     let item = {item: obj.target.item.value, price: Number(obj.target.price.value) }
@@ -70,6 +71,10 @@ class App extends React.Component {
             total={this.total}
             itotal={this.itotal}  
             stotal={this.stotal}
+            sharing={this.sharing}
+            cost={this.cost}
+            price={this.costPlusMargin}
+            aftertax={this.plusTax}
             addNewItem={(type,obj) => this.appendItem(type,obj)}
             factorChange={(event) => this.changeFactor(event)}/>)}
              />
