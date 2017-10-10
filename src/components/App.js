@@ -15,6 +15,9 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = data
+    this.adults = this.state.adults
+    this.margin = this.state.margin
+    this.tax = this.state.tax
   }
   componentWillMount(){
     this.computeTotals();
@@ -22,17 +25,12 @@ class App extends React.Component {
   computeTotals(){
     let individual = this.state.individual
     let shared = this.state.shared
-    let itotal = individual.reduce((total, item)=>({price: total.price+item.price}))
-    let stotal = shared.reduce((total, item)=>({price: total.price+item.price}))    
-    this.setState(
-      { 
-        i_total:itotal.price,
-        s_total:stotal.price
-      }
-    )
-    this.setState((prevState, props)=>({
-      total: prevState.i_total + (prevState.s_total/prevState.adults)
-    }))     
+    this.itotal = (individual.reduce((total, item)=>({price: total.price+item.price}))).price
+    this.stotal = (shared.reduce((total, item)=>({price: total.price+item.price}))).price  
+    let cost = this.itotal + (this.stotal/this.adults)
+    let costPlusMargin = cost + (cost*(this.margin/100))
+    let plusTax = costPlusMargin + (costPlusMargin*(this.tax/100))
+    this.total = plusTax
   }
   appendItem(type, obj) {
     let item = {item: obj.target.item.value, price: Number(obj.target.price.value) }
@@ -48,9 +46,9 @@ class App extends React.Component {
     this.computeTotals();
   }
   updateInfoState(event){
-    this.setState({
-      [event.target.name]: event.target.value
-    })
+    this[event.target.name] = Number(event.target.value)
+    let obj = {[event.target.name]: Number(event.target.value)}
+    this.setState(obj)
   }
   changeFactor(event){
     this.updateInfoState(event);
@@ -60,14 +58,18 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <Info data={this.state} onChange={(event) => this.updateInfoState(event)} />
           <div className="container2">
+            <Link to="/information"><i className="fa fa-user" aria-hidden="true"></i> Information</Link>
             <Link to="/computations"><i className="fa fa-calculator" aria-hidden="true"></i> Computations</Link>
             <Link to="/itinerary"><i className="fa fa-list" aria-hidden="true"></i> Itinerary</Link>
             <Link to="/computations"><i className="fa fa-bed" aria-hidden="true"></i> Hotels</Link>
           </div>
-          <Route exact path="/computations" 
-            component={()=> (<Computations data={this.state} 
+          <Route exact path="/information" component={()=>(<Info data={this.state}/>)}/>
+          <Route exact path="/computations"
+            component={()=> (<Computations data={this.state}
+            total={this.total}
+            itotal={this.itotal}  
+            stotal={this.stotal}
             addNewItem={(type,obj) => this.appendItem(type,obj)}
             factorChange={(event) => this.changeFactor(event)}/>)}
              />
