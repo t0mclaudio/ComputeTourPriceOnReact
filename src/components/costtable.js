@@ -35,7 +35,14 @@ var CostTable = (props) => {
         <tr>
           <td className="total">Total: </td>
           <td className="total alignright">{Currency.format(props.total, {code:'PHP'})}</td>
-        </tr>   
+        </tr>
+        { props.sharing ?
+        <tr>
+          <td className="total">Sharing: </td>
+          <td className="total alignright">{Currency.format(props.sharing, {code:'PHP'})}</td>
+        </tr> 
+        :
+        null}
         <AddItem onAddItem={(obj)=>onAdd(obj)} />
       </tfoot>
     </table>
