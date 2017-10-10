@@ -6,7 +6,7 @@ import Factor from './factor';
 var Computations = (props) => {
         const onAdd = (type,obj) => props.addNewItem(type,obj)  
         const onFactorChange = event => props.factorChange(event) 
-        return (
+        return (   
             <div className="container3">
                 <Factor onChange={(event)=>onFactorChange(event)} 
                     data={props.data} />  
@@ -24,9 +24,13 @@ var Computations = (props) => {
                     icon="fa-users" 
                     items={props.data.shared}
                     onAddItem = {(obj)=>onAdd("s", obj)} />
-                    
-                <Total total={props.total} />      
-          </div>
+                <div>        
+                    <Total text="Total Cost" total={props.cost} />
+                    <Total text="Individual Price(Before tax)" total={props.price} />
+                    <Total text="Individual Price(After tax)" total={props.aftertax} />
+                    <Total text="Grand Total" total={props.total} />    
+                </div>
+            </div> 
         )
     }
 
